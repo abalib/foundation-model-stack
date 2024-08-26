@@ -6,7 +6,7 @@ from typing import Optional
 import pyarrow as pa
 import torch
 import urllib3
-from pyarrow.fs import FileSystem, FileType, LocalFileSystem, S3FileSystem
+from pyarrow.fs import FileSystem, FileType, LocalFileSystem #, S3FileSystem
 from torch.utils.data import Dataset, IterableDataset
 
 from fms.datasets.util import SavableDataset

@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Any, Callable, List, Mapping, Optional
 
 import torch
