@@ -16,8 +16,9 @@ export SENLIB_DEVEL_CONFIG_FILE=/root/.senlib.json
 export AIU_CONFIG_FILE_0=/root/.senlib.json
 #export FLEX_RDMA_PCI_BUS_ADDR_0="0000:00:00.0"
 export AIU_WORLD_RANK_0="0000:00:00.0"
-export DTLOG_LEVEL=error
-#unset TORCH_SENDNN_LOG
+export DTLOG_LEVEL=info
+export TORCH_SENDNN_LOG=DEBUG
+# unset TORCH_SENDNN_LOG
 export DT_DEEPRT_VERBOSE=-1
 #export COMPILATION_MODE=offline_decoder
 #export DTCOMPILER_KEEP_EXPORT=true
@@ -28,7 +29,7 @@ export FLEX_DEVICE=VFIO
 #unset FMS_SKIP_TP_EMBEDDING
 
 
-MODEL_PATH=/models/bert-base-uncased
+MODEL_PATH=/apps/bert-base-uncased
 DATASET_PATH=../twitter_complaints.json
 
 python3 -u ./train_classification.py \
@@ -41,6 +42,6 @@ python3 -u ./train_classification.py \
 	--device_type=cpu \
 	--dataset_style=sentiment \
 	--dataset_path=${DATASET_PATH} \
-	--compile \
 	--head_only \
-	--batch_size=2
+	--batch_size=2 \
+	--compile
