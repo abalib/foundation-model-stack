@@ -278,8 +278,8 @@ def main():
     print0("dataset state", dataset_sd)
 
     if args.compile:
-        model = torch.compile(model, backend="sendnn")
-        optimizer.step = torch.compile(optimizer.step, backend="sendnn")
+        model = torch.compile(model, backend="inductor")
+        optimizer.step = torch.compile(optimizer.step, backend="inductor")
 
     tokenizer = tokenizers.get_tokenizer(args.tokenizer)
 
