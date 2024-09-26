@@ -17,8 +17,8 @@ export AIU_CONFIG_FILE_0=/root/.senlib.json
 #export FLEX_RDMA_PCI_BUS_ADDR_0="0000:00:00.0"
 export AIU_WORLD_RANK_0="0000:00:00.0"
 export DTLOG_LEVEL=error
-####export TORCH_SENDNN_LOG=DEBUG
-unset TORCH_SENDNN_LOG
+export TORCH_SENDNN_LOG=DEBUG
+###unset TORCH_SENDNN_LOG
 export DT_DEEPRT_VERBOSE=-1
 #export COMPILATION_MODE=offline_decoder
 #export DTCOMPILER_KEEP_EXPORT=true
@@ -43,5 +43,5 @@ python3 -u ./train_classification.py \
 	--dataset_style=sentiment \
 	--dataset_path=${DATASET_PATH} \
 	--head_only \
-	--batch_size=2 \
+	--batch_size=1 \
 	--compile
