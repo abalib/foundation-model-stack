@@ -30,7 +30,7 @@ export FLEX_DEVICE=VFIO
 
 
 MODEL_PATH=/apps/bert-base-uncased
-DATASET_PATH=/apps/aml/kyc_test_data.csv
+DATASET_PATH=/apps/aml/kyc_test_data_sample.csv
 
 DEE_DUMP_GRAPHS=bert DTCOMPILER_KEEP_EXPORT=1 PYTHONUNBUFFERED=1 TORCH_SENDNN_TRAIN=1 TORCH_LOGS=dynamo \
 python3 -u ./train_classification.py \
