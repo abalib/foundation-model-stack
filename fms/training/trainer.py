@@ -24,8 +24,8 @@ def __one_step(
         output = model(input, attn_algorithm="math")
         return loss_fn(output, label)
 
-#    if compile_loss:
-#        loss_fwd = torch.compile(loss_fwd, backend=compile_backend)
+    if compile_loss:
+        loss_fwd = torch.compile(loss_fwd, backend=compile_backend)
 
     autocast = (
         torch.autocast(device_type="cuda") if grad_scaler is not None else nullcontext()

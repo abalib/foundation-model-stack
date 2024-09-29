@@ -313,7 +313,7 @@ def main():
 
     if args.compile:
         # Handled by trainer to include loss
-        model = torch.compile(model, backend=args.compile_backend)
+        # model = torch.compile(model, backend=args.compile_backend)
         optimizer.step = torch.compile(optimizer.step, backend=args.compile_backend)
 
     tokenizer = tokenizers.get_tokenizer(args.tokenizer)
