@@ -28,9 +28,17 @@ export FLEX_DEVICE=VFIO
 # export FLEX_MONITOR_SLEEP=0
 # unset FMS_SKIP_TP_EMBEDDING
 
+TRAIN_DATA=$1
+INPUT_MODEL=$2
+OUTPUT_MODEL=$3
+TOKENIZER=$4
+BACKEND=$5
 
-MODEL_PATH=/apps/bert-base-uncased
-DATASET_PATH=/apps/aml/kyc_test_data.csv
+echo ${TRAIN_DATA}
+echo ${INPUT_MODEL}
+echo ${OUTPUT_MODEL}
+echo ${TOKENIZER}
+echo ${BACKEND}
 
 DEE_DUMP_GRAPHS=bert DTCOMPILER_KEEP_EXPORT=1 PYTHONUNBUFFERED=1 TORCH_SENDNN_TRAIN=1 TORCH_LOGS=dynamo \
 python3 -u ./train_classification.py \
@@ -38,14 +46,15 @@ python3 -u ./train_classification.py \
 	--variant=base \
 	--num_classes=2 \
 	--checkpoint_format=hf \
-	--model_path=${MODEL_PATH}/pytorch_model.bin \
-	--tokenizer=${MODEL_PATH} \
+	--model_path=${INPUT_MODEL} \
+	--tokenizer=${TOKENIZER} \
 	--device_type=cpu \
-	--dataset_path=${DATASET_PATH} \
+	--dataset_path=${TRAIN_DATA} \
 	--head_only \
 	--compile \
-	--compile_backend="sendnn" \
+	--compile_backend=${BACKEND} \
 	--dataset_style=aml \
 	--unfuse_weights \
 	--batch_size=4 \
-	--default_dtype="fp32"
+	--default_dtype="fp32" \
+	--output_path=${OUTPUT_MODEL}
