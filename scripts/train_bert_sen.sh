@@ -49,14 +49,13 @@ python3 -u ./train_classification.py \
 	--model_path=${INPUT_MODEL} \
 	--tokenizer=${TOKENIZER} \
 	--device_type=cpu \
-	--dataset_style=sentiment \
 	--dataset_path=${TRAIN_DATA} \
 	--head_only \
-	--batch_size=1 \
 	--compile \
 	--compile_backend=${BACKEND} \
 	--dataset_style=aml \
 	--unfuse_weights \
 	--batch_size=4 \
 	--default_dtype="fp32" \
-	--output_path=${OUTPUT_MODEL}
+	--output_path=${OUTPUT_MODEL} \
+	--report_steps=500

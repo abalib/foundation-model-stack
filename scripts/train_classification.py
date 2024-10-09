@@ -409,7 +409,7 @@ def main():
         device=device,
     )
     reporting = trainplugins.MetricReporter(
-        steps=1,
+        steps=args.report_steps,
         prev_step=prev_step,
         cumulative_tokens=cum_tokens,
         group=group,

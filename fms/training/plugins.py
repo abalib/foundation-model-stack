@@ -160,10 +160,15 @@ class MetricReporter(TrainerPlugin):
             self.last_step = step
             if step == self.last_reported_step:
                 return
+
             time_per_step = elapsed / (step - self.last_reported_step)
             self.time_per_step.fill_(time_per_step)
             steps = step - self.last_reported_step
             self.last_reported_step = step
+
+            # --report_steps controls how often report is printed
+            if step % self.steps != 0:
+                return
 
         # group and global world are only different for HSDP
         group_world = 1 if self.group is None else self.group.size()
